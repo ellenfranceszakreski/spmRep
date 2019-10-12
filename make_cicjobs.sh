@@ -63,7 +63,7 @@ fi
 echo "MakeInputCommand = $MakeInputCommand"
 # subjects--------
 if [ "$#" -eq 4 ]; then # 3 inputs
-	SubjectsFile=$AnalysisDir/subjects.txt #default subject list
+	SubjectsFile=$AnalysisDir/Scripts/subjects.txt #default subject list
 elif [ "$#" -eq 5 ]; then
 	SubjectsFile=$5
 	if [ ${#SubjectsFile} -eq 0 ]; then
@@ -72,7 +72,7 @@ elif [ "$#" -eq 5 ]; then
 	fi
 fi
 if [ ! -f "$SubjectsFile" ]; then
-	printf "error: Invalid subject list. Could not find\n\t%s" $SubjectsFile
+	printf "error: Invalid subject list. Could not find\n\t%s\n" $SubjectsFile
 	exit 8
 elif [ `cat "$SubjectsFile" | wc -l` -eq 0 ]; then
 	echo "error: Invalid SubjectsFile. SubjectsFile must have at least one subject."
