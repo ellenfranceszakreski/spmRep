@@ -123,7 +123,7 @@ subfun_after_defining_subx_runx () {
 	echo "spm_jobman(jobs, inputs{:});" >> $JobFile
 	echo "save('"$DoneFile"', 'jobs', 'inputs', '-mat');" >> $JobFile
 	# add to job list
-	echo "matlab -nodesktop -nodisplay -nosplash -r \"run('"$JobFile"')\"" >> $cicjoblistFile#
+	echo "matlab -nodesktop -nodisplay -nosplash -r \"run('"$JobFile"')\"" >> $cicjoblistFile
     	echo "done "$JobFile
 }
 # -----------------
