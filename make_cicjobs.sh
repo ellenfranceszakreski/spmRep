@@ -32,9 +32,9 @@ if [ "$1" = "subx" ]; then
 	echo "Job will be made for each subject"
 elif [ "$1" = "subx_runx" ]; then
 	SeparateRuns=true;
+	echo "Job will be made for each run for each subject"
 else
 	echo "error: input 1 must be either subx or subx_runx"
-	echo "Job will be made for each run for each subject"
 	exit 2
 fi
 # JobName--------
@@ -132,14 +132,6 @@ subfun_after_defining_subx_runx () {
 ## make jobs
 if [ $SeparateRuns ]; then
 	for subx in `cat $SubjectsFile`; do
-		subx_JobFile=$cicjobDir/$subx"_job.m"
-		subfun_before_defining_subx_runx $subx_JobFile
-		echo "subx = '"$subx"';" >> $subx_JobFile
-		subfun_after_defining_subx_runx $subx_JobFile
-	done
-	LastJob=$subx_JobFile
-else
-	for subx in `cat $SubjectsFile`; do
 		for r in {1..3}; do
 			runx="run"$r
 			subx_runx_JobFile=$cicjobDir/$subx"_"$runx"_job.m"
@@ -149,6 +141,14 @@ else
 		done
 	done
 	LastJob=$subx_runx_JobFile
+else
+	for subx in `cat $SubjectsFile`; do
+		subx_JobFile=$cicjobDir/$subx"_job.m"
+		subfun_before_defining_subx_runx $subx_JobFile
+		echo "subx = '"$subx"';" >> $subx_JobFile
+		subfun_after_defining_subx_runx $subx_JobFile
+	done
+	LastJob=$subx_JobFile
 fi
 ## make test job list based on last subject
 touch $cicjobDir/test_cicjoblist
