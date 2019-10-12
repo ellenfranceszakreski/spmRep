@@ -29,10 +29,12 @@ fi
 # SeparateRuns--------
 if [ "$1" = "subx" ]; then
 	SeparateRuns=false;
+	echo "Job will be made for each subject"
 elif [ "$1" = "subx_runx" ]; then
 	SeparateRuns=true;
 else
 	echo "error: input 1 must be either subx or subx_runx"
+	echo "Job will be made for each run for each subject"
 	exit 2
 fi
 # JobName--------
