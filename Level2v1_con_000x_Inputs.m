@@ -1,7 +1,9 @@
-function Inputs = Level2v1_con_000x_Inputs(con_000x)
+function Inputs = Level2v1_con_000x_Inputs(AnalysisDir, con_000x)
 % Level2
-AnalysisDir='/data/scratch/zakell/fmri_oct2019'; % make sure this is correct
+% e.g. AnalysisDir='/data/scratch/zakell/fmri_oct2019'; % make sure this is correct
+
 % check inputs
+assert(exist(AnalysisDir,'dir')==7, 'Invalid analysis directory\n\t%s', AnalysisDir);
 assert(~isempty(regexp(con_000x,'^con_\d{3}$','once')),'Invalid con_000x.');
 % get group data
 ds = importdata(fullfile(AnalysisDir,'Data/AllSubjects.mat'));
