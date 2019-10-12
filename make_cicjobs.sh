@@ -17,8 +17,7 @@
 # e.g. make_cicjobs.sh subx prepro "{/data/scratch/zakell/fmri_oct2019/prepro.m}" "make_input(subx)" (uses default subject list)
 
 AnalysisDir=/data/scratch/zakell/fmri_oct2019  # <- make sure this is correct
-## check dirs
-test ! -d $AnalysisDir/cicjobs && mkdir $AnalysisDir/cicjobs 
+
 ## check inputs
 # number of inputs--------
 if [ "$#" -ne 4 ] && [ "$#" -ne 5 ]; then
@@ -83,10 +82,13 @@ printf "\n%d subjects\n" `cat $SubjectsFile | wc -l`
 # done checking input
 
 ## set up cicjob Dir
+## check dirs
+test ! -d $AnalysisDir/cicjobs && mkdir $AnalysisDir/cicjobs 
 cicjobDir=$AnalysisDir/cicjobs/$JobName
 # remove old directory if it exists
 test -d $cicjobDir && rm -r $cicjobDir
-
+# remake direcory
+mkdir $cicjobDir
 ## job list
 cicjoblistFile=$cicjobDir/cicjoblist
 touch $cicjoblistFile
