@@ -21,7 +21,7 @@ AnalysisDir=/data/scratch/zakell/fmri_oct2019  # <- make sure this is correct
 test ! -d $AnalysisDir/cicjobs && mkdir $AnalysisDir/cicjobs 
 ## check inputs
 # number of inputs--------
-if [ "$#" -ne 4 ] && [ "$#" -ne 5 ]
+if [ "$#" -ne 4 ] && [ "$#" -ne 5 ]; then
 	echo "error: incorrect number of inputs."
 	echo "usage: ./make_cicjobs.sh  <subx_or_subx_runx> <JobName> <MakeJobCommand> <MakeInputCommand> <optional subjects .txt file>"
 	echo "e.g. ./make_cicjobs.sh prepro \"{/data/scratch/zakell/fmri_oct2019/Scripts/prepro.m}\" \"{}\" /data/scratch/zakell/fmri_oct2019/Scripts/these_subjects.txt"
