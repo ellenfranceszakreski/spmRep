@@ -96,18 +96,18 @@ do
 	echo "matlabpool(cluster, number_of_cores);"  >> $subxJobFile
 	# add paths
 	echo "addpath(fullfile('"$AnalysisDir"','Scripts'));" >> $subxJobFile 
-    echo "addpath(genpath(fullfile(spm('dir'),'config')));" >> $subxJobFile
-    # make jobs and inputs
-    echo "subx = '"$subx"';" >> $subxJobFile
-    echo "jobs = "$MakeJobCommand";" >> $subxJobFile
-    echo "inputs = "$MakeInputCommand";" >> $subxJobFile
-    echo "assert(iscell(jobs),'jobs must be cell.');">> $subxJobFile
-    echo "assert(iscell(inputs),'inputs must be cell.');">> $subxJobFile # inputs can be empty
-    # spm
-    echo "spm('defaults','FMRI');" >> $subxJobFile
-    echo "spm_jobman(jobs, inputs{:});" >> $subxJobFile
-    # save job done file
-    echo "save('"$AnalysisDir"/Input/"$subx"/"$JobName"_done.mat', 'jobs', 'inputs', '-mat');" >> $subxJobFile
+    	echo "addpath(genpath(fullfile(spm('dir'),'config')));" >> $subxJobFile
+    	# make jobs and inputs
+    	echo "subx = '"$subx"';" >> $subxJobFile
+    	echo "jobs = "$MakeJobCommand";" >> $subxJobFile
+    	echo "inputs = "$MakeInputCommand";" >> $subxJobFile
+    	echo "assert(iscell(jobs),'jobs must be cell.');">> $subxJobFile
+   	 echo "assert(iscell(inputs),'inputs must be cell.');">> $subxJobFile # inputs can be empty
+    	# spm
+    	echo "spm('defaults','FMRI');" >> $subxJobFile
+    	echo "spm_jobman(jobs, inputs{:});" >> $subxJobFile
+    	# save job done file
+    	echo "save('"$AnalysisDir"/Input/"$subx"/"$JobName"_done.mat', 'jobs', 'inputs', '-mat');" >> $subxJobFile
 	printf "%% DONE" >> $subxJobFile
 	# add to job list
 	echo "matlab -nodesktop -nodisplay -nosplash -r \"run('"$subxJobFile"')\"" >> $cicjoblistFile
