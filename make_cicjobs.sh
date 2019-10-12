@@ -130,7 +130,7 @@ subfun_after_defining_subx_runx () {
 ## make jobs
 if [ $SeparateRuns ]; then
 	for subx in `cat $SubjectsFile`; do
-		subx_JobFile=$cicjobDir/$subx"_job.m'"
+		subx_JobFile=$cicjobDir/$subx"_job.m"
 		subfun_before_defining_subx_runx $subx_JobFile
 		echo "subx = '"$subx"';" >> $subx_JobFile
 		subfun_after_defining_subx_runx $subx_JobFile
@@ -140,7 +140,7 @@ else
 	for subx in `cat $SubjectsFile`; do
 		for r in {1..3}; do
 			runx="run"$r
-			subx_runx_JobFile=$cicjobDir/$subx"_"$runx"_job.m'"
+			subx_runx_JobFile=$cicjobDir/$subx"_"$runx"_job.m"
 			echo "subx = '"$subx"';" >> $subx_runx_JobFile
 			echo "runx = '"$runx"';" >> $subx_runx_JobFile
 			subfun_after_defining_subx_runx $subx_runx_JobFile
