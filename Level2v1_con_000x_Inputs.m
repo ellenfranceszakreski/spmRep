@@ -1,22 +1,26 @@
-function Inputs = Level2v1_con_000x_Inputs(AnalysisDir, con_000x)
+function Inputs = Level2v1_con_000x_Inputs(AnalysisDir, con_000x, subx_to_exclude)
 % Level2
 % e.g. AnalysisDir='/data/scratch/zakell/fmri_oct2019'; % make sure this is correct
 
 % check inputs
 assert(exist(AnalysisDir,'dir')==7, 'Invalid analysis directory\n\t%s', AnalysisDir);
 assert(~isempty(regexp(con_000x,'^con_\d{3}$','once')),'Invalid con_000x.');
+if ~isempty(subx_to_exclude)
+    subx_to_exclude=cellstr(subx_to_exclude);
+end
 % get group data
 ds = importdata(fullfile(AnalysisDir,'Data/AllSubjects.mat'));
 % mak contrast image names (e.g. .../Input/sub10/con_0001.nii)
 ds.con_000x = strcat(AnalysisDir,'/Input/', ds.subx,'/',con_000x, '.nii');
 % exclude rows where subjects have no con_000x.nii images
-con000x_exists_ind=false(size(ds,1),1);
+keep_ind=false(size(ds,1),1);
 for n=1:size(ds,1)
-    con000x_exists_ind(n) = exist(ds.con_000x{n}, 'file') == 2;
+    keep_ind(n) = exist(ds.con_000x{n}, 'file') == 2;
 end; clear n
-assert(any(con000x_exists_ind),'Could not find contrast images');
-ds = ds(con000x_exists_ind, :);
-clear con000x_exists_ind
+keep_ind = keep_ind & ~ismember(ds.subx, subx_to_exclude);
+assert(any(keep_ind),'Could not find contrast images that are not excluded');
+ds = ds(keep_ind, :);
+clear keep_ind
 
 % design directory
 Level2Dir=fullfile(AnalysisDir,'Level2v1',con_000x);
