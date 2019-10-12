@@ -1,13 +1,13 @@
 #!/bin/sh
-# ./clone_github_Rep.sh <RepositoryName> clone github files to CIC directory Github (on analysis path)
+# ./clone_github.sh <RepositoryName> clone github files to CIC directory Github (on analysis path)
 # get code from github repository
-# e.g. ./clone_github_Rep.sh spmRep
+# e.g. ./clone_github.sh spmRep
 
 AnalysisDir=/data/scratch/zakell/fmri_oct2019 # make sure this is correct (name should not have any spaces)
 
 if [ "$#" -ne 1 ]; then
   echo "error:Incorrect number of inputs"
-  echo "usage:./clone_github_Rep.sh <RepositoryName>"
+  echo "usage:./clone_github.sh <RepositoryName>"
   exit 1
 fi
 RepositoryName=$1
