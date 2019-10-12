@@ -142,7 +142,6 @@ else
 			echo "subx = '"$subx"';" >> $subx_runx_JobFile
 			echo "runx = '"$runx"';" >> $subx_runx_JobFile
 			subfun_after_defining_subx_runx $subx_runx_JobFile
-			unset subx_runx_JobFile
 		done
 	done
 	LastJob=$subx_runx_JobFile
