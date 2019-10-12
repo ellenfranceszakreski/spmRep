@@ -12,9 +12,9 @@
 # 4 optional subjects .txt file
 # if subject list not specified default is .../Scripts/subjects.txt
 # Examples
-# e.g. make_cicjobs.sh prepro "{/data/scratch/zakell/fmri_oct2019/prepro.m}" "{}" these_subjects.txt
-# e.g. make_cicjobs.sh PrePro2 "make_matlabbatch(subx)" "{}" these_subjects.txt # make_matlabbatch should be .m in Scripts dir
-# e.g. make_cicjobs.sh prepro "{/data/scratch/zakell/fmri_oct2019/prepro.m}" "make_input(subx)" (uses default subject list)
+# e.g. make_cicjobs.sh subx prepro "{/data/scratch/zakell/fmri_oct2019/prepro.m}" "{}" these_subjects.txt
+# e.g. make_cicjobs.sh subx_runx Smooth06 "make_matlabbatch(subx)" "{}" these_subjects.txt # make_matlabbatch should be .m in Scripts dir
+# e.g. make_cicjobs.sh subx prepro "{/data/scratch/zakell/fmri_oct2019/prepro.m}" "make_input(subx)" (uses default subject list)
 
 AnalysisDir=/data/scratch/zakell/fmri_oct2019  # <- make sure this is correct
 ## check dirs
@@ -24,7 +24,7 @@ test ! -d $AnalysisDir/cicjobs && mkdir $AnalysisDir/cicjobs
 if [ "$#" -ne 4 ] && [ "$#" -ne 5 ]; then
 	echo "error: incorrect number of inputs."
 	echo "usage: ./make_cicjobs.sh  <subx_or_subx_runx> <JobName> <MakeJobCommand> <MakeInputCommand> <optional subjects .txt file>"
-	echo "e.g. ./make_cicjobs.sh prepro \"{/data/scratch/zakell/fmri_oct2019/Scripts/prepro.m}\" \"{}\" /data/scratch/zakell/fmri_oct2019/Scripts/these_subjects.txt"
+	echo "e.g. ./make_cicjobs.sh subx prepro \"{/data/scratch/zakell/fmri_oct2019/Scripts/prepro.m}\" \"{}\" /data/scratch/zakell/fmri_oct2019/Scripts/these_subjects.txt"
 	exit 1
 fi
 # SeparateRuns--------
