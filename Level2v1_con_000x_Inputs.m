@@ -4,7 +4,7 @@ function Inputs = Level2v1_con_000x_Inputs(AnalysisDir, con_000x, subx_to_exclud
 
 % check inputs
 assert(exist(AnalysisDir,'dir')==7, 'Invalid analysis directory\n\t%s', AnalysisDir);
-assert(~isempty(regexp(con_000x,'^con_\d{3}$','once')),'Invalid con_000x.');
+assert(~isempty(regexp(con_000x,'^con_\d+$','once')),'Invalid con_000x.');
 if ~isempty(subx_to_exclude)
     subx_to_exclude=cellstr(subx_to_exclude);
 end
