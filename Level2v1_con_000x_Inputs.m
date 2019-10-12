@@ -17,7 +17,7 @@ ds = ds(con000x_exists_ind, :);
 clear con000x_exists_ind
 
 % design directory
-Level2Dir=fullfile(AnalysisDir,'Level2v1');
+Level2Dir=fullfile(AnalysisDir,'Level2v1',con_000x);
 if exist(Level2Dir,'dir')~=7
     mkdir(Level2Dir);
 elseif ~isempty(ls(Level2Dir))
